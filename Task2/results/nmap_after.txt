@@ -1,0 +1,9 @@
+# Nmap 7.99 scan initiated Mon Nov 16 12:54:18 2026 as: /usr/lib/nmap/nmap --privileged -Pn -sV -p5000 -oN /home/kali/campushield/Task2/results/nmap_after.txt 192.168.56.101
+Nmap scan report for 192.168.56.101
+Host is up.
+
+PORT     STATE    SERVICE VERSION
+5000/tcp filtered upnp
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov 16 12:54:20 2026 -- 1 IP address (1 host up) scanned in 2.15 seconds
