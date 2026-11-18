@@ -60,6 +60,20 @@ Quick test:
    python3 Task4/app_fixed.py &
    curl "http://localhost:5000/login?user=admin'--&pw=x"      # blocked -> DENIED
 
+## Task 5 (Q3) - Logging and Brute-Force Detection
+
+Task 5 Q3 provides log monitoring: a script that parses an authentication log and
+alerts on repeated failed logins from a single source (brute-force detection).
+
+Files:
+- Task5/log_monitor.py - generates a synthetic auth log, parses it, and alerts on any
+  source IP with failed logins above the threshold (5).
+- Task5/log_monitor_output.txt - captured output (alert for 10.0.0.66).
+
+Run:
+
+   python3 Task5/log_monitor.py
+
 ## Security
 
 This project is intended for testing inside
