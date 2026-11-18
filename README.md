@@ -30,6 +30,36 @@ Python Flask and SQLite.
 
    http://127.0.0.1:5000
 
+## Task 4 - Application and Database Weaknesses
+
+Task 4 demonstrates and fixes three web/database weaknesses, each following a
+baseline -> fix -> retest loop.
+
+Weaknesses (baseline in app.py):
+- SQL injection on /login - user=admin'-- bypasses authentication.
+- Reflected XSS on /search - unescaped input is rendered back in the response.
+- Clickjacking - no X-Frame-Options header, so the page can be framed.
+
+Fixes (Task4/app_fixed.py):
+- Parameterised queries (SQLi), output escaping with markupsafe (XSS),
+  security headers X-Frame-Options / CSP / nosniff (clickjacking), salted scrypt
+  password verification, and an RBAC role check.
+
+Files:
+- Task4/app_fixed.py - remediated application
+- Task4/attack_and_fix.md - baseline attacks, mitigations, retest, severity and residual risk
+- Task4/phishing_sample.eml and Task4/phishing_analysis.md - phishing/spoofing simulation
+
+Quick test:
+
+   # baseline (vulnerable)
+   python3 app.py &
+   curl "http://localhost:5000/login?user=admin'--&pw=x"      # bypass -> WELCOME
+
+   # after fix
+   python3 Task4/app_fixed.py &
+   curl "http://localhost:5000/login?user=admin'--&pw=x"      # blocked -> DENIED
+
 ## Security
 
 This project is intended for testing inside
