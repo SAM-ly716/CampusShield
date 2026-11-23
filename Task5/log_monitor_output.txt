@@ -1,0 +1,5 @@
+Total events: 20
+Total failures: 12
+Total successes: 8
+ALERT: possible brute-force from 10.0.0.66 - 8 failed logins targeting admin, bob, guest, root
+This detection rule could be scheduled (cron) or wired to fail2ban/an email alert in production

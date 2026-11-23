@@ -60,6 +60,30 @@ Quick test:
    python3 Task4/app_fixed.py &
    curl "http://localhost:5000/login?user=admin'--&pw=x"      # blocked -> DENIED
 
+## Task 5 - Sustain Operations (Hardening, Firewall, Monitoring)
+
+Task 5 applies operational controls to the hardened environment. The shell scripts run
+with sudo inside the isolated Kali VM.
+
+Q1 - Host hardening and least privilege (Task5/harden.sh):
+- Creates a campus group with csadmin/csregistrar (authorised) and csstudent
+  (unauthorised - kept out of the group), sets /opt/campushield to 750 and the data
+  file to 640, then tests access: csstudent is denied, csadmin can read.
+
+   sudo bash Task5/harden.sh
+
+Q2 - Host firewall (Task5/firewall.sh):
+- Uses iptables to set a default-deny INPUT policy, allow loopback + established and
+  only inbound tcp 5000 (the app), and drop 3306 (MySQL) and 23 (Telnet).
+
+   sudo bash Task5/firewall.sh
+
+Q3 - Logging and brute-force detection (Task5/log_monitor.py):
+- Parses a synthetic auth log and alerts on any source IP with failed logins above the
+  threshold (5). Captured output in Task5/log_monitor_output.txt (alert for 10.0.0.66).
+
+   python3 Task5/log_monitor.py
+
 ## Security
 
 This project is intended for testing inside
